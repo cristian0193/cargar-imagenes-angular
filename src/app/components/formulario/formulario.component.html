@@ -1,0 +1,54 @@
+<br>
+<div class="row">
+    <div class="col-md-4">
+        <h1>Formulario</h1>
+        <div class="formulario">
+
+            <form [formGroup]="imageForm" (ngSubmit)="onSubmit()">
+                <label for="item"><strong>Item</strong></label>
+                <input class="form-control" type="text" formControlName="item">
+                <br>
+                <label for="precio"><strong>Precio</strong></label>
+                <input class="form-control" type="number" formControlName="price">
+                <br>
+                <label for="imagen"><strong>Imagen</strong></label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Subir</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="form-control custom-file-input" id="imagen" formControlName="file" (change)="onFileChange($event)">
+                        <label class="custom-file-label"> {{ fileSeccion }} </label>
+                    </div>
+                </div>
+                <div class="block">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products; let i = index">
+                    <th scope="row">{{ i + 1 }} </th>
+                    <td>{{ product.item }}</td>
+                    <td>{{ product.price | currency}}</td>
+                    <td>
+                        <img src="{{ product.url_images }}" class="box-image">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
